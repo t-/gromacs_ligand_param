@@ -9,7 +9,7 @@ GAUSSIAN_RC_FILE=~/.bashrc_g09
 GROMACS_RC_FILE=/usr/local/gromacs/GMXRC51
 PATH_TO_ACEPYPE=~/Software/acpype-read-only/acpype.py
 BASEDIR=$(pwd)
-MINIMALBASISSET_INACCURATE=true
+MINIMALBASISSET_INACCURATE=false
 
 # set GMX ff path
 export GMXLIB=/netmount/projects/async/forcefields/
@@ -74,6 +74,16 @@ function modify_amber99sb_ff_for_ligand {
   cat $BASEDIR/$FFOUTPATH/$MOLNAME/top2itp/merged_nbonds.itp >> ffnonbonded.itp
   cat $BASEDIR/$FFOUTPATH/$MOLNAME/top2itp/res_aminoacids.rtp | sed 's/MOL/AA/g' >> aminoacids.rtp
   cat $BASEDIR/$FFOUTPATH/$MOLNAME/top2itp/merged_atomtypes.atp >> atomtypes.atp
+}
+
+function regrompp {
+  a=$(gmx grompp -f md.mdp -c vs_box.pdb -p topol.top -pp processed.top -o top.tpr 2>&1 | grep Unknown| awk '{print $3}');
+  echo "attempting to autoremove unkown atom type $a";
+  cat amber99sb-ildn.ff/aminoacids.vsd | egrep -v $a > amber99sb-ildn.ff/aa.vsd;
+  mv amber99sb-ildn.ff/aa.vsd amber99sb-ildn.ff/aminoacids.vsd;
+  cat amber99sb-ildn.ff/ffbonded.itp | egrep -v $a > amber99sb-ildn.ff/aa.bon;
+  mv amber99sb-ildn.ff/aa.bon amber99sb-ildn.ff/ffbonded.itp;
+  a='_'
 }
 
 for PDBFILENAME in $(ls ligands| grep pdb);
@@ -164,8 +174,21 @@ do
   echo -e '1\n1\n' | gmx pdb2gmx -f mol.pdb -vsite hydrogens -o vs.pdb > log_pdb2gmx.log 2>&1
   cp $BASEDIR/tools/md.mdp .
   gmx editconf -f vs.pdb -o vs_box.pdb -d 1.3 > log_editconf.log 2>&1 || echo 'editconf failed'
-  gmx grompp -f md.mdp -c vs_box.pdb -p topol.top -pp processed.top -o top.tpr > log_grompp.log 2>&1 || echo 'grompp failed'; a=$(gmx grompp -f md.mdp -c vs_box.pdb -p topol.top -pp processed.top -o top.tpr 2>&1 | grep Unknown| awk '{print $3}'); echo "attempting to autoremove unkown atom type $a";cat amber99sb-ildn.ff/aminoacids.vsd | egrep -v $a > amber99sb-ildn.ff/aa.vsd; mv amber99sb-ildn.ff/aa.vsd amber99sb-ildn.ff/aminoacids.vsd; cat amber99sb-ildn.ff/ffbonded.itp | egrep -v $a > amber99sb-ildn.ff/aa.bon; mv amber99sb-ildn.ff/aa.bon amber99sb-ildn.ff/ffbonded.itp
-  gmx grompp -f md.mdp -c vs_box.pdb -p topol.top -pp processed.top -o top.tpr > log_grompp_rerun.log 2>&1
+  a='_'
+  gmx grompp -f md.mdp -c vs_box.pdb -p topol.top -pp processed.top -o top.tpr > log_grompp.log 2>&1 || echo 'grompp failed'; a=$(gmx grompp -f md.mdp -c vs_box.pdb -p topol.top -pp processed.top -o top.tpr 2>&1 | grep Unknown| awk '{print $3}');
+
+  if [ ! $a == '_' ];then # if grommpp failed to to undefined atom type it will be saved in $a
+    while true; do
+      regrompp # rerun grompp and check $a again, to see if it is empty now, or if there was another missing atom type
+      if [ $a == '_' ];then
+        break
+      fi
+      sleep 1
+      echo "retrying in $(pwd) for atom $a"
+    done
+  fi
+
+  # check if processed.top was written
   if [ ! -f processed.top ];then
     echo "pdb2gmx/grommp generation of V-SITEs failed in $(pwd), continue?"
     select yn in "Yes" "No"; do
@@ -175,6 +198,10 @@ do
         esac
     done
   fi
-  echo "GAFF V-SITEs generation in $(pwd) seemed to work. ;-)\n\n\t\t FIN \n\n"
+  echo -e "GAFF V-SITEs generation in $(pwd) seemed to work. ;-)\n\n\t\t FIN \n\n"
+
+  cp processed.top $BASEDIR/$FFOUTPATH/$MOLNAME/mol.itp
+  cp vs_box.pdb $BASEDIR/$FFOUTPATH/$MOLNAME/mol.pdb
+
   cd $BASEDIR
 done
