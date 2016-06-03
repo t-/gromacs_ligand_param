@@ -1,0 +1,4 @@
+*.pyc
+merged_*
+res_*
+ligandsFFOut/

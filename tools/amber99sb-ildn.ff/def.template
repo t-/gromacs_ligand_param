@@ -1,0 +1,45 @@
+
+; Modified amino acid torsions in Amber99SB-ILDN
+; These should not override the general torsion for the atom types,
+; so to avoid introducing extra new atom types we list them explicitly for
+; the residues in question:
+
+#define torsion_ILE_N_CA_CB_CG2_mult1          0.0        0.8158800        1  ; Proteins 78, 1950 (2010)
+#define torsion_ILE_N_CA_CB_CG2_mult2          0.0       -3.5396640        2  ; Proteins 78, 1950 (2010)
+
+#define torsion_LEU_C_CA_CB_CG_mult1           0.0        2.3890640        1  ; Proteins 78, 1950 (2010)
+#define torsion_LEU_C_CA_CB_CG_mult2           0.0       -1.4978720        2  ; Proteins 78, 1950 (2010)
+#define torsion_LEU_C_CA_CB_CG_mult3           0.0        0.5648400        3  ; Proteins 78, 1950 (2010)
+
+#define torsion_ASP_N_CA_CB_CG_mult1           0.0       -11.024840        1  ; Proteins 78, 1950 (2010)
+#define torsion_ASP_N_CA_CB_CG_mult2           0.0        -4.978960        2  ; Proteins 78, 1950 (2010)
+#define torsion_ASP_N_CA_CB_CG_mult3           0.0        -0.029288        3  ; Proteins 78, 1950 (2010)
+#define torsion_ASP_N_CA_CB_CG_mult4           0.0         1.769832        4  ; Proteins 78, 1950 (2010)
+#define torsion_ASP_N_CA_CB_CG_mult5           0.0         0.970688        5  ; Proteins 78, 1950 (2010)
+#define torsion_ASP_N_CA_CB_CG_mult6           0.0        -0.891192        6  ; Proteins 78, 1950 (2010)
+
+#define torsion_ASP_CA_CB_CG_OD_mult1          0.0         0.0             1  ; Proteins 78, 1950 (2010)
+#define torsion_ASP_CA_CB_CG_OD_mult2          0.0        -1.853512        2  ; Proteins 78, 1950 (2010)
+#define torsion_ASP_CA_CB_CG_OD_mult3          0.0         0.0             3  ; Proteins 78, 1950 (2010)
+#define torsion_ASP_CA_CB_CG_OD_mult4          0.0        -0.577392        4  ; Proteins 78, 1950 (2010)
+#define torsion_ASP_CA_CB_CG_OD_mult5          0.0         0.0             5  ; Proteins 78, 1950 (2010)
+#define torsion_ASP_CA_CB_CG_OD_mult6          0.0        -0.054392        6  ; Proteins 78, 1950 (2010)
+
+#define torsion_ASN_C_CA_CB_CG_mult1           0.0         2.389064        1  ; Proteins 78, 1950 (2010)
+#define torsion_ASN_C_CA_CB_CG_mult2           0.0        -2.493664        2  ; Proteins 78, 1950 (2010)
+#define torsion_ASN_C_CA_CB_CG_mult3           0.0         0.493712        3  ; Proteins 78, 1950 (2010)
+#define torsion_ASN_C_CA_CB_CG_mult4           0.0        -1.744728        4  ; Proteins 78, 1950 (2010)
+#define torsion_ASN_C_CA_CB_CG_mult5           0.0         0.435136        5  ; Proteins 78, 1950 (2010)
+#define torsion_ASN_C_CA_CB_CG_mult6           0.0        -0.422584        6  ; Proteins 78, 1950 (2010)
+
+#define torsion_ASN_CA_CB_CG_ND2_mult1         0.0        -4.376464        1  ; Proteins 78, 1950 (2010)
+#define torsion_ASN_CA_CB_CG_ND2_mult2         0.0        -0.757304        2  ; Proteins 78, 1950 (2010)
+#define torsion_ASN_CA_CB_CG_ND2_mult3         0.0        -0.146440        3  ; Proteins 78, 1950 (2010)
+#define torsion_ASN_CA_CB_CG_ND2_mult4         0.0         0.418400        4  ; Proteins 78, 1950 (2010)
+#define torsion_ASN_CA_CB_CG_ND2_mult5         0.0         0.543920        5  ; Proteins 78, 1950 (2010)
+#define torsion_ASN_CA_CB_CG_ND2_mult6         0.0        -0.443504        6  ; Proteins 78, 1950 (2010)
+
+
+ 
+
+

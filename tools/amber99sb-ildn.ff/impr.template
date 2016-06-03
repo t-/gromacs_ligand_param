@@ -1,0 +1,52 @@
+
+[ dihedraltypes ]
+;i  j   k  l	 func      phase      kd      pn
+CA  CA  CA  OH       4      180.00     4.60240     2 	; new99
+H5  O   C   OH       4      180.00     4.60240     2 	; new99
+H5  O   C   OS       4      180.00     4.60240     2 	; new99
+CM  CT  CM  HA       4      180.00     4.60240     2 	; new99
+CA  CA  CA  Br       4      180.00     4.60240     2 	; new99
+CM  H4  C   O        4      180.00     4.60240     2 	; new99
+C   CT  N   H        4      180.00     4.60240     2 	; new99
+C   CT  N   O        4      180.00     4.60240     2    ; new99
+CB  CK  N*  CT       4      180.00     4.18400     2	; 
+CK  CB	N*  CT	     4      180.00     4.18400     2    ;
+C   CM  N*  CT       4      180.00     4.18400     2	; dac guess, 9/94
+CT  N*  C   CM       4      180.00     4.18400     2    ; 
+CM  C   CM  CT       4      180.00     4.60240     2	; 
+CT  O   C   OH       4      180.00    43.93200     2	; 
+NA  CV  CC  CT       4      180.00     4.60240     2	; 
+NB  CW  CC  CT       4      180.00     4.60240     2	; 
+NA  CW  CC  CT       4      180.00     4.60240     2	; 
+CW  CB  C*  CT       4      180.00     4.60240     2	; 
+CA  CA  CA  CT       4      180.00     4.60240     2	; 
+C   CM  CM  CT       4      180.00     4.60240     2	; dac guess, 9/94
+NC  CM  CA  N2       4      180.00     4.60240     2	; dac guess, 9/94
+CB  NC  CA  N2       4      180.00     4.60240     2	; dac, 10/94
+NA  NC  CA  N2       4      180.00     4.60240     2	; dac, 10/94
+CA  CA  C   OH       4      180.00     4.60240     2	; 
+CT  CV  CC  NA       4      180.00     4.60240     2	; 
+CT  CW  CC  NB       4      180.00     4.60240     2	; 
+CT  CW  CC  NA       4      180.00     4.60240     2	; 
+CB  CT  C*  CW       4      180.00     4.60240     2	; 
+CM  N2  CA  NC       4      180.00     4.60240     2	; 
+CB  N2  CA  NC       4      180.00     4.60240     2	; 
+N2  NA  CA  NC       4      180.00     4.60240     2	; 
+N   N   C   O        4      180.00    43.93200     2	; urea
+X   O2  C   O2       4      180.00    43.93200     2	; JCC,7,(1986),230
+X   N2  CA  N2       4      180.00    43.93200     2	; JCC,7,(1986),230
+X   CT  N   CT       4      180.00     4.18400     2	; JCC,7,(1986),230
+X   X   C   O        4      180.00    43.93200     2	; JCC,7,(1986),230
+X   X   N   H        4      180.00     4.18400     2	; JCC,7,(1986),230
+X   X   N2  H        4      180.00     4.18400     2	; JCC,7,(1986),230
+X   X   NA  H        4      180.00     4.18400     2	; JCC,7,(1986),230
+X   X   CA  HA       4      180.00     4.60240     2	; bsd.on C6H6 nmodes
+X   X   CW  H4       4      180.00     4.60240     2	; 
+X   X   CR  H5       4      180.00     4.60240     2	; 
+X   X   CV  H4       4      180.00     4.60240     2	; 
+X   X   CQ  H5       4      180.00     4.60240     2	; 
+X   X   CK  H5       4      180.00     4.60240     2	; 
+X   X   CM  H4       4      180.00     4.60240     2	; 
+X   X   CM  HA       4      180.00     4.60240     2	; 
+X   X   CA  H4       4      180.00     4.60240     2	; bsd.on C6H6 nmodes 
+X   X   CA  H5       4      180.00     4.60240     2	; bsd.on C6H6 nmodes

@@ -1,0 +1,12 @@
+#!/usr/bin/less
+#AUTHOR: Timo Graen
+#EMAIL: tgraen@gwdg.de
+#DATE: 17-Aug-2010
+#ARCH: cola vending machines/ ATMs/ digital watches
+#REQUIRES: python, amb2gmx.pl to generate the .top file
+#STATUSCOMMENTS: Experimental! might require some bugspray
+#DESCRIPTION: see grubiwiki 'HowTo: Parameterize a Residue with GAFF'
+#USAGE: look at EXAMPLE.py and then at top2itp.py 
+#EXAMPLE: python EXAMPLE.py
+
+###ENDHEADER###

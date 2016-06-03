@@ -1,0 +1,19 @@
+
+cpp                      = /usr/bin/cpp
+define                   = ;-DFLEXIBLE
+integrator               = md
+nsteps                   = 500
+constraints              = none
+emtol                    = 1000.0
+emstep                   = 0.01
+comm_mode                = linear
+ns_type                  = simple
+nstlist                  = 40
+rlist                    = 1.0
+rcoulomb                 = 1.0
+rvdw                     = 1.0
+Tcoupl                   = no
+Pcoupl                   = no
+gen_vel                  = no
+nstxout                  = 1
+pbc                      = xyz

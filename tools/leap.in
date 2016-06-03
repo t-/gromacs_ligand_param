@@ -1,0 +1,7 @@
+source /home/tgraen/Software/amber11/dat/leap/cmd/leaprc.gaff
+loadamberparams /home/tgraen/Software/amber11/dat/leap/parm/gaff.dat
+loadamberprep aa.prep 
+mods = loadamberparams frcmod
+saveamberparm AA prmtop inpcrd
+quit
+
