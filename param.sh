@@ -5,11 +5,11 @@
 
 LIGANDLIB=./ligands
 FFOUTPATH=./ligandsFFOut
-MOL_CHARGE=0
 GAUSSIAN_RC_FILE=~/.bashrc_g09
 GROMACS_RC_FILE=/usr/local/gromacs/GMXRC51
 PATH_TO_ACEPYPE=~/Software/acpype-read-only/acpype.py
 BASEDIR=$(pwd)
+MINIMALBASISSET_INACCURATE=true
 
 # set GMX ff path
 export GMXLIB=/netmount/projects/async/forcefields/
@@ -21,6 +21,7 @@ source $GROMACS_RC_FILE
 for PDBFILENAME in $(ls ligands| grep pdb);
 do
   MOLNAME=$(basename -s .pdb $PDBFILENAME)
+  MOL_CHARGE=$(echo $MOLNAME|tr '_' '\n'| tail -n 1)
   mkdir -p $BASEDIR/$FFOUTPATH/$MOLNAME
   cd $BASEDIR/$FFOUTPATH/$MOLNAME
   echo 'processing' $MOLNAME $(pwd)
@@ -37,8 +38,13 @@ do
   echo '%nprocshared=4' > mol.com
   echo '%mem=2000MB' >> mol.com
   echo '%chk=mol.chk' >> mol.com
-  echo '#opt hf/sto-3g iop(6/33=2,6/41=10,6/42=17) pop=mk scf=tight test' >> mol.com
-  # echo '#opt hf/6-31g(d) iop(6/33=2,6/41=10,6/42=17) pop=mk scf=tight test' >> mol.com
+  if ! $MINIMALBASISSET_INACCURATE; then
+    echo 'using 6-31g(d)'
+    echo '#opt hf/6-31g(d) iop(6/33=2,6/41=10,6/42=17) pop=mk scf=tight test' >> mol.com
+  elif $MINIMALBASISSET_INACCURATE; then
+    echo 'using STO-3G (dont do this its terrible but fast)'
+    echo '#opt hf/sto-3g iop(6/33=2,6/41=10,6/42=17) pop=mk scf=tight test' >> mol.com
+  fi
   echo -e '\nTitle Card Required\n' >> mol.com
   echo "$MOL_CHARGE 1" >> mol.com
   #skip header of .com file (first 6 lines)
